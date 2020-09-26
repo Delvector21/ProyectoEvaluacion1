@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ProyectoEvaluacion1</string>
+    <string name="nombre">Nombre Artista</string>
+    <string name="fecha">Fecha Evento</string>
+</resources>
