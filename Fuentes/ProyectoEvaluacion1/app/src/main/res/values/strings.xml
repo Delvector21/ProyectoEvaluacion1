@@ -2,4 +2,9 @@
     <string name="app_name">ProyectoEvaluacion1</string>
     <string name="nombre">Nombre Artista</string>
     <string name="fecha">Fecha Evento</string>
+    <string name="genero">Genero Musical</string>
+    <string name="valor">Valor Entrada</string>
+    <string name="nota">Calificación</string>
+    <string name="registrarBtn">Registrar Evento</string>
+    <string name="lista">Eventos Registrados</string>
 </resources>

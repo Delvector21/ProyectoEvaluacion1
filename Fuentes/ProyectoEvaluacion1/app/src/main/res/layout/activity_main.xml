@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
- <LinearLayout
+   <LinearLayout
      android:layout_width="match_parent"
      android:layout_height="wrap_content"
      android:layout_marginTop="@dimen/marginTopBase"
@@ -18,8 +18,8 @@
         android:layout_height="wrap_content"
         android:text="@string/nombre"
         android:gravity="center"
-        android:layout_weight="1"
-        android:textSize="@dimen/tamanioLetra"
+        android:layout_weight="2"
+        android:textSize="@dimen/tamanioLetra2"
 
     ></TextView>
     <EditText
@@ -29,35 +29,151 @@
 
     </EditText>
 
- </LinearLayout>
+   </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/separacion"
+        android:layout_marginTop="@dimen/marginTopBase"
+        android:orientation="horizontal"
+
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="@string/fecha"
+            android:textSize="@dimen/tamanioLetra2"
+
+        ></TextView>
+
+        <DatePicker
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/altoDatePicker"
+            android:layout_weight="1"
+            android:calendarViewShown="false"
+            android:datePickerMode="spinner"
+            >
+
+        </DatePicker>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/marginTopBase"
         android:orientation="horizontal"
 
         >
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/fecha"
-            android:gravity="center"
             android:layout_weight="1"
-            android:textSize="@dimen/tamanioLetra"
-
-            ></TextView>
-        <CalendarView
+            android:gravity="center"
+            android:text="@string/genero"
+            android:textSize="@dimen/tamanioLetra2"
+            >
+        </TextView>
+        <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:visibility="visible"
+
             >
 
-        </CalendarView>
-
+        </Spinner>
 
 
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/marginTopBase"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/valor"
+            android:textSize="@dimen/tamanioLetra2"
+            >
 
+        </TextView>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            >
+
+        </EditText>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/marginTopBase"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/nota"
+            android:textSize="@dimen/tamanioLetra2"
+            android:gravity="center"
+            android:layout_weight="1">
+
+        </TextView>
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+        </Spinner>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/marginTopBase">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/registrarBtn"
+            android:textSize="@dimen/tamanioLetra">
+
+        </Button>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/marginTopBase">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:gravity="center"
+            android:text="@string/lista"
+            android:textSize="@dimen/tamanioLetra3"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+
+            ></TextView>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            ></ListView>
+    </LinearLayout>
 
 </LinearLayout>

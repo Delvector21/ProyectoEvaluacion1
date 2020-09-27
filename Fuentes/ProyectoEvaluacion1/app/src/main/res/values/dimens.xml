@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="marginTopBase">30dp</dimen>
+    <dimen name="marginTopBase">20dp</dimen>
     <dimen name="tamanioLetra">15sp</dimen>
+    <dimen name="tamanioLetra2">18sp</dimen>
     <dimen name="separacion">15dp</dimen>
+    <dimen name="margenChico">5dp</dimen>
+    <dimen name="altoDatePicker">85dp</dimen>
+    <dimen name="tamanioLetra3">20sp</dimen>
+
 </resources>
