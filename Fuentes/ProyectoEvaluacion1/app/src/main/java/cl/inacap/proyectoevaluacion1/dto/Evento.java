@@ -49,4 +49,9 @@ public class Evento {
     public void setCalificacion(int calificacion) {
         this.calificacion = calificacion;
     }
+
+    @Override
+    public String toString() {
+        return nombre + "  " + fecha +  "  " + valor + "  " + calificacion;
+    }
 }
