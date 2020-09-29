@@ -5,6 +5,6 @@
     <string name="genero">Genero Musical</string>
     <string name="valor">Valor Entrada</string>
     <string name="nota">Calificación</string>
-    <string name="registrarBtn">Registrar Evento</string>
+    <string name="agregarBtn">Registrar Evento</string>
     <string name="lista">Eventos Registrados</string>
 </resources>
