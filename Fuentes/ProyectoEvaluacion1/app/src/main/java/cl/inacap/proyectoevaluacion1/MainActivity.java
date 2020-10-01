@@ -1,10 +1,13 @@
 package cl.inacap.proyectoevaluacion1;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -66,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
         eventosLv.setAdapter(adapterList);
 
         fechaTxt.setInputType(InputType.TYPE_NULL);
-
         this.fechaTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
