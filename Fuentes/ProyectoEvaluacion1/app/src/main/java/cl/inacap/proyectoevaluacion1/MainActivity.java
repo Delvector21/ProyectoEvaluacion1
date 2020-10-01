@@ -1,20 +1,16 @@
 package cl.inacap.proyectoevaluacion1;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,7 +19,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import cl.inacap.proyectoevaluacion1.dao.EventosDAO;
+import cl.inacap.proyectoevaluacion1.adapters.CustomArrayAdapter;
+import cl.inacap.proyectoevaluacion1.dao.EventosDAOLista;
 import cl.inacap.proyectoevaluacion1.dto.Evento;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,14 +30,11 @@ public class MainActivity extends AppCompatActivity {
     private Spinner generoSp;
     private Spinner notaSp;
     private EditText fechaTxt;
-    private ListView eventosLv;
-    private Button agregarBtn;
-    private Button limpiarBtn;
-    private EventosDAO edao = new EventosDAO();
-    String[] generos = { "Rock", "Jazz", "Pop", "Reggaeton", "Salsa" , "Metal" };
+    private EventosDAOLista edao = new EventosDAOLista();
+    String[] generos = { "Rock", "Jazz", "Pop", "Reggaeton", "Salsa" , "Metal", "Trap" };
     String[] notas = { "1" , "2" , "3" , "4" , "5" , "6" , "7"};
-    private ArrayAdapter<Evento> adapterL;
-    AdapterList adapterList = new AdapterList();
+    private CustomArrayAdapter adapterList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,14 +42,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         this.nombreTxt = findViewById(R.id.nombreTxt);
         this.valorTxt = findViewById(R.id.valorTxt);
-        this.generoSp = (Spinner) findViewById(R.id.generoSp);
+        this.generoSp = findViewById(R.id.generoSp);
         this.fechaTxt = findViewById(R.id.fechaTxt);
-        this.agregarBtn = findViewById(R.id.agregarBtn);
-        this.notaSp = (Spinner) findViewById(R.id.notaSp);
-        this.eventosLv = findViewById(R.id.eventosLv);
-        this.limpiarBtn = findViewById(R.id.limpiarBtn);
+        Button agregarBtn = findViewById(R.id.agregarBtn);
+        this.notaSp = findViewById(R.id.notaSp);
+        ListView eventosLv = findViewById(R.id.eventosLv);
+        Button limpiarBtn = findViewById(R.id.limpiarBtn);
 
-        //this.adapterL = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, edao.getAll());
+        adapterList = new CustomArrayAdapter(this,R.layout.customlayout, edao.getAll());
 
         ArrayAdapter<String> adapterG =  new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, generos);
         ArrayAdapter<String> adapterN = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, notas);
@@ -64,11 +58,10 @@ public class MainActivity extends AppCompatActivity {
 
         generoSp.setAdapter(adapterG);
         notaSp.setAdapter(adapterN);
-
-
         eventosLv.setAdapter(adapterList);
 
         fechaTxt.setInputType(InputType.TYPE_NULL);
+
         this.fechaTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        this.limpiarBtn.setOnClickListener(new View.OnClickListener() {
+        limpiarBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 nombreTxt.setText("");
@@ -94,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        this.agregarBtn.setOnClickListener(new View.OnClickListener() {
+        agregarBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -145,8 +138,6 @@ public class MainActivity extends AppCompatActivity {
 
                 if (fechaStr.isEmpty()){
                     errores.add("ingrese una fecha");
-                }else{
-
                 }
 
 
@@ -159,8 +150,10 @@ public class MainActivity extends AppCompatActivity {
                     e.setGenero(generoStr);
                     e.setValor(valor);
                     e.setCalificacion(nota);
-                    edao.Add(e);
+                    edao.add(e);
                     adapterList.notifyDataSetChanged();
+
+                    Toast.makeText(MainActivity.this, "Evento Ingresado", Toast.LENGTH_SHORT).show();
 
                 }else {
                     mostrarErrores(errores);
@@ -171,39 +164,20 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
+
     }
 
-    class AdapterList extends BaseAdapter{
-
-        @Override
-        public int getCount() {
-            return edao.getAll().size();
-        }
-
-        @Override
-        public Object getItem(int i) {
-            return null;
-        }
-
-        @Override
-        public long getItemId(int i) {
-            return 0;
-        }
-
-        @Override
-        public View getView(int i, View view, ViewGroup viewGroup) {
-            return null;
-        }
-    }
 
     private void mostrarErrores(List<String> errores) {
-        String mensaje = "";
+        StringBuilder mensaje = new StringBuilder();
         for (String e:errores){
-            mensaje += "-" + e + "\n";
+            mensaje.append("-").append(e).append("\n");
         }
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MainActivity.this);
         alertBuilder.setTitle("Error de Validacion")
-                .setMessage(mensaje)
+                .setMessage(mensaje.toString())
                 .setPositiveButton("aceptar",null)
                 .create()
                 .show();

@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:focusableInTouchMode="true"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -31,8 +30,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:inputType="textPersonName"
             android:imeOptions="actionDone"
+            android:inputType="textPersonName"
 
 
             >
@@ -92,8 +91,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/genero"
-            android:focusableInTouchMode="false"
             android:textSize="@dimen/tamanioLetra2"></TextView>
+
         <Spinner
             android:id="@+id/generoSp"
             android:layout_width="match_parent"
@@ -129,7 +128,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:inputType="number">
+            android:inputType="number"
+
+            >
 
         </EditText>
 

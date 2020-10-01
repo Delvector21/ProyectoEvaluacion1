@@ -54,4 +54,6 @@ public class Evento {
     public String toString() {
         return nombre + "  " + fecha +  "  " + valor + "  " + calificacion;
     }
+
+
 }
